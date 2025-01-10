@@ -1,0 +1,27 @@
+.codeEditAndJudge-root {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 150px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.problemList-container {
+  background-color: brown;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.codeEditor-container {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.judgeStats-container {
+  grid-column: 2;
+  grid-row: 2;
+  height: 100%;
+}

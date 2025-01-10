@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"] // Maps @ to the src directory
+      },
+      "jsx": "react-jsx", // Ensure this is set if using React
+      // ... other options
+    },
+    "include": [
+      "src",// Ensure src is included
+      "src/defines/*.d.ts"
+    ]
+  }

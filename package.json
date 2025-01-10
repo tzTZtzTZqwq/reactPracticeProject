@@ -1,0 +1,46 @@
+{
+  "name": "react-tsapp",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@codemirror/autocomplete": "github:codemirror/autocomplete",
+    "@codemirror/lang-java": "github:codemirror/lang-java",
+    "@codemirror/lang-javascript": "github:codemirror/lang-javascript",
+    "@uiw/react-codemirror": "^4.23.7",
+    "codemirror": "^6.0.1",
+    "cra-template-typescript": "1.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "_comment": "react-scripts start",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0"
+  }
+}
