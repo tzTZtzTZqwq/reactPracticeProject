@@ -6,7 +6,11 @@ import CodeInput from "./Input/Input"
 import * as React from 'react';
 import "./codeEditor.css"
 
-function CodeEditor() {
+type codeEditorProps = {
+  refresh: () => Promise<any>;
+}
+
+function CodeEditor({refresh}: codeEditorProps) {
   const defaultCode = "import java.util.ArrayList;\n" +
 "import java.util.Scanner;\n" +
 "public class Main {\n" +
@@ -57,7 +61,7 @@ function CodeEditor() {
   const submitCode = async () => {
     setConsoleOutput('Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.');
     try {
-      const response = await fetch('https://java.tonyz.top/program/attempt.php', {
+      const response = await fetch('https://java.tonyz.top/program/judge.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +107,7 @@ function CodeEditor() {
         <CodeEditorInner onCodeChange={setCode} initialCode={localStorage.getItem('code')==""?defaultCode:localStorage.getItem('code')}/>
       </div>
       <div className="CodeToolBar-container">
-        <CodeToolBar run={runCode} submit={submitCode}/>
+        <CodeToolBar run={runCode} submit={submitCode} refresh={refresh}/>
       </div>
       <div className="CodeConsoleInput-container">
         <div className="CodeConsole-container">

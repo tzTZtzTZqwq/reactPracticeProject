@@ -1,16 +1,18 @@
 export enum blockStatusEnum {
-    NONE = "#000000", 
-    PENDING = "#FFA500", 
-    ACCEPTED = "#008000",
-    WRONGANSWER = "#FF0000",
-    TIMELIMIT = "#FFFF00", 
-    MEMORYLIMIT = "#0000FF", 
-    UNKNOWN = "#808080"
+    NONE = 0, 
+    PENDING = 1, 
+    ACCEPTED = 2,
+    WRONGANSWER = 3,
+    TIMELIMIT = 4, 
+    MEMORYLIMIT = 5, 
+    UNKNOWN = 6
 }
-        
+
 export type blockStatus = {
     index: string,
+    time: string,
     status: keyof typeof blockStatusEnum
 }
 
-
+export const blockColorArr = ["#000000","#FFA500","#008000","#FF0000","#FFFF00","#0000FF","#808080"];
+ex

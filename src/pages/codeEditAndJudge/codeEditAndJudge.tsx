@@ -10,6 +10,7 @@ function CodeEditAndJudge() {
   const [blockStatusArray, setBlockStatusArray] = React.useState([]);
   const [viewToggle, setViewToggle] = React.useState(0);
   const [md, setMd] = React.useState('');
+  const [result,setResult] = React.useState('')
 
   React.useEffect(() => {
     const fetchDescription = async () => {
@@ -22,12 +23,27 @@ function CodeEditAndJudge() {
       }
     };
     const initialBlockStatusArray = Array.from({ length: "work in progress".length }, (_, index) => ({
-      index: "work in progress".charAt(index),
-      status: index % 2 === 0 ? blockStatusEnum.ACCEPTED : blockStatusEnum.PENDING
+      index: index % 2 === 0 ?"AC":"WA",
+      status: index % 2 === 0 ? blockStatusEnum.ACCEPTED : blockStatusEnum.PENDING,
+      time: index
     }));
     setBlockStatusArray(initialBlockStatusArray);
     fetchDescription();
+    refreshResult();
   }, []);
+
+  const refreshResult = async () => {
+    try {
+      const response = await fetch('https://java.tonyz.top/program/getJudgeResult.php', {
+        method: 'GET',
+      });
+      const data = await response.json();
+      console.log(data.result);
+      setResult(data.result_description);
+    } catch (error) {
+      console.error('Error', error); 
+    }
+  };
 
   return (
     <div className="codeEditAndJudge-root">
@@ -41,10 +57,10 @@ function CodeEditAndJudge() {
         <ProblemList />
       </div>
       <div className="codeEditor-container">
-        <CodeEditor />
+        <CodeEditor refresh={refreshResult}/>
       </div>
       <div className="judgeStats-container">
-        <JudgeStatsPanel blockStatusArray={blockStatusArray} />
+        <JudgeStatsPanel blockStatusArray={blockStatusArray} result={result} />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ function JudgeStatsBlock({block} : judgestatsBlockProps){
   return (
     <div className="judgePanel-Block-root" style={{ backgroundColor: block.status }}>
       <p className="judgePanel-Block-indexText">{block.index}</p>
+      <p className="judgePanel-Block-timeText">{block.time}</p>
     </div>
   );
 };

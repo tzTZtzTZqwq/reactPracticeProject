@@ -4,12 +4,14 @@ import JudgeStatsBlock from './block/block';
 import type {blockStatusEnum,blockStatus} from '@/defines/judgeDefines'
 
 type JudgeStatsPanelProps = {
-  blockStatusArray?: blockStatus[]
+  blockStatusArray?: blockStatus[],
+  result
 }
 
-function JudgeStatsPanel({ blockStatusArray }: JudgeStatsPanelProps) {
+function JudgeStatsPanel({ blockStatusArray ,result}: JudgeStatsPanelProps) {
   return (
     <div className="judgePanel-root">
+      <p>{result}1</p>
       <div className="judgePanel-contianer">
       {blockStatusArray?.map((block, index) => (
         <JudgeStatsBlock block={block} />
