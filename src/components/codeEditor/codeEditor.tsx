@@ -7,8 +7,7 @@ import * as React from 'react';
 import "./codeEditor.css"
 
 function CodeEditor() {
-  
-  const [code, setCode] = React.useState("import java.util.ArrayList;\n" +
+  const defaultCode = "import java.util.ArrayList;\n" +
 "import java.util.Scanner;\n" +
 "public class Main {\n" +
 "    public static void main(String[] args) {\n" +
@@ -50,11 +49,36 @@ function CodeEditor() {
 "                break;\n" +
 "        }\n" +
 "    }\n" +
-"}\n");
+"}\n"
+  const [code, setCode] = React.useState();
   const [consoleOutput, setConsoleOutput] = React.useState("");
   const [input, setInput] = React.useState("");
 
   const submitCode = async () => {
+    setConsoleOutput('Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.');
+    try {
+      const response = await fetch('https://java.tonyz.top/program/attempt.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code, input })
+      });
+      const data = await response.json();
+      if(data.status==1){
+        setConsoleOutput(data.output);//compile error
+      }else{
+        
+      }
+      
+      return data;
+    } catch (error) {
+      console.error('Error', error);
+      setConsoleOutput("Error"+error);
+    }
+  };
+
+  const runCode = async () => {
     setConsoleOutput('Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.');
     try {
       const response = await fetch('https://java.tonyz.top/program/attempt.php', {
@@ -73,30 +97,10 @@ function CodeEditor() {
     }
   };
 
-  const runCode = async () => {
-    try {
-      setConsoleOutput('your code has been submitted. Please wait');
-      console.log(consoleOutput);
-      const response = await fetch('https://java.tonyz.top/program/attempt.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ code })
-      });
-      const data = await response.json();
-      setConsoleOutput(data.output);
-      return data;
-    } catch (error) {
-      console.error('Error submitting code:', error);
-      setConsoleOutput("Error executing code");
-    }
-  };
-
   return (
     <div className="codeEditor-root">
       <div className="CodeEditorInner-container">
-        <CodeEditorInner onCodeChange={setCode}/>
+        <CodeEditorInner onCodeChange={setCode} initialCode={localStorage.getItem('code')==""?defaultCode:localStorage.getItem('code')}/>
       </div>
       <div className="CodeToolBar-container">
         <CodeToolBar run={runCode} submit={submitCode}/>

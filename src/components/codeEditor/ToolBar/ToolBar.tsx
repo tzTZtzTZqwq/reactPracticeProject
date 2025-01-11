@@ -9,11 +9,9 @@ type codeToolBarProps = {
 function CodeToolBar({run, submit }: codeToolBarProps) {
     return (
         <div className="codeEditor-ToolBar-root">
-            <div style={{ display: 'none' }}>
-                <button onClick={async() => await run()}>
-                    Run
-                </button>
-            </div>
+            <button onClick={async() => await run()}>
+                Run
+            </button>
             <button onClick={async() => await submit()}>
                 Submit
             </button>

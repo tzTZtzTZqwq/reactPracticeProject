@@ -7,55 +7,11 @@ import "./Editor.css"
 import { Dispatch } from 'react';
 
 type CodeEditorProps = {
-  onCodeChange: Dispatch<React.SetStateAction<string>>
+  onCodeChange: Dispatch<React.SetStateAction<string>>,
+  initialCode
 }
-function CodeEditorInner({ onCodeChange }: CodeEditorProps) {
-  const [value, setValue] = React.useState(
-    "import java.util.ArrayList;\n" +
-"import java.util.Scanner;\n" +
-"public class Main {\n" +
-"    public static void main(String[] args) {\n" +
-"        System.out.println(\"Hello World!\");\n" +
-"\n" +
-"        int test = 0;\n" +
-"\n" +
-"        switch(test){\n" +
-"            case 0://Fibonacci sequence\n" +
-"                int f = 5;\n" +
-"                int n1 = 1;\n" +
-"                int n2 = 1;\n" +
-"                for (int i = 1;i <= 5;i++){\n" +
-"                    int temp_n2 = n2;\n" +
-"                    n2 = n1 + n2;\n" +
-"                    n1 = temp_n2;\n" +
-"                    System.out.println(n2);\n" +
-"                }\n" +
-"                break;\n" +
-"            case 1://time limit exceeded\n" +
-"                long sum = 0;\n" +
-"                for(long i = 0;i<=100000000000000l;i++){\n" +
-"                    sum += i;\n" +
-"                }\n" +
-"                System.out.println(sum);\n" +
-"                break;\n" +
-"            case 2://memory limit exceeded(not working)\n" +
-"                ArrayList<Long> numbers = new ArrayList<Long>();\n" +
-"                for(long i = 0;i<=1000000l;i++){\n" +
-"                    numbers.add(i);\n" +
-"                }\n" +
-"                System.out.println(numbers.size());\n" +
-"                break;\n" +
-"            case 3://input\n" +
-"                Scanner scan = new Scanner(System.in);\n" +
-"                double f2 = (double)scan.nextInt();\n" +
-"                double num = (1/Math.sqrt(5)) * (Math.pow((1+Math.sqrt(5))/2,f2) - Math.pow((1-Math.sqrt(5))/2,f2));\n" +
-"                System.out.println((int)f2+\"th number in the fibonacci sequence is: \"+(int)num);\n" +
-"                break;\n" +
-"        }\n" +
-"    }\n" +
-"}\n"
-
-  );
+function CodeEditorInner({ onCodeChange,initialCode }: CodeEditorProps) {
+  const [value, setValue] = React.useState(initialCode);
 
   const myCompletions = context => {
     let word = context.matchBefore(/\w*/)
@@ -69,6 +25,7 @@ function CodeEditorInner({ onCodeChange }: CodeEditorProps) {
   const onChange = React.useCallback((value) => {
     setValue(value);
     onCodeChange(value);
+    localStorage.setItem('code',value)
   }, [onCodeChange]);
   
   function codeBottomInfoPanel(view: EditorView): Panel {
