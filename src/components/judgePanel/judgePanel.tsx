@@ -11,7 +11,7 @@ type JudgeStatsPanelProps = {
 function JudgeStatsPanel({ blockStatusArray ,result}: JudgeStatsPanelProps) {
   return (
     <div className="judgePanel-root">
-      <p>{result}1</p>
+      <p>{result}</p>
       <div className="judgePanel-contianer">
       {blockStatusArray?.map((block, index) => (
         <JudgeStatsBlock block={block} />

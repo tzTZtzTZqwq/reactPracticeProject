@@ -8,10 +8,10 @@ import { Dispatch } from 'react';
 
 type CodeEditorProps = {
   onCodeChange: Dispatch<React.SetStateAction<string>>,
-  initialCode
+  initialCode: string
 }
 function CodeEditorInner({ onCodeChange,initialCode }: CodeEditorProps) {
-  const [value, setValue] = React.useState(initialCode);
+  const [code, setCode] = React.useState<string>(initialCode);
 
   const myCompletions = context => {
     let word = context.matchBefore(/\w*/)
@@ -23,7 +23,7 @@ function CodeEditorInner({ onCodeChange,initialCode }: CodeEditorProps) {
   }
   
   const onChange = React.useCallback((value) => {
-    setValue(value);
+    setCode(value);
     onCodeChange(value);
     localStorage.setItem('code',value)
   }, [onCodeChange]);
@@ -48,7 +48,7 @@ function CodeEditorInner({ onCodeChange,initialCode }: CodeEditorProps) {
   return (
     <div className="codeEditor-Editor-root">
       <CodeMirror 
-        value={value} 
+        value={typeof code === 'string' ? code : 'error 03 expected string but got: '+typeof code} 
         height="100%" 
         width="100%"
         style={{ height: '100%', width: '100%' }}

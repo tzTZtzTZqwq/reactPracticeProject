@@ -4,6 +4,7 @@
   grid-template-rows: auto 30%;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .problemListDetail-container {

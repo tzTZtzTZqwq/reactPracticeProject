@@ -9,11 +9,11 @@ type CodeEditorProps = {
 }
 
 function CodeInput({ onCodeChange }: CodeEditorProps) {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState<string>("");
   
-  const onChange = React.useCallback((value) => {
-    setValue(value);
-    onCodeChange(value);
+  const onChange = React.useCallback((v: React.SetStateAction<string>) => {
+    setValue(v);
+    onCodeChange(v);
   }, [onCodeChange]);
   
   function codeInputInfoPanel(view: EditorView): Panel {
@@ -25,7 +25,7 @@ function CodeInput({ onCodeChange }: CodeEditorProps) {
   return (
     <div className="codeEditor-Input-root">
       <CodeMirror 
-        value={value} 
+        value={typeof value === 'string' ? value : 'error 02 expected string but got: '+typeof value} 
         height="100%" 
         width="100%"
         style={{ height: '100%', width: '100%' }}

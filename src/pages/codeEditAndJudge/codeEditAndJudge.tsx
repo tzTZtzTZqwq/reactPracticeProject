@@ -22,11 +22,7 @@ function CodeEditAndJudge() {
         console.error('Error fetching description:', error);
       }
     };
-    const initialBlockStatusArray = Array.from({ length: "work in progress".length }, (_, index) => ({
-      index: index % 2 === 0 ?"AC":"WA",
-      status: index % 2 === 0 ? blockStatusEnum.ACCEPTED : blockStatusEnum.PENDING,
-      time: index
-    }));
+    const initialBlockStatusArray = [];
     setBlockStatusArray(initialBlockStatusArray);
     fetchDescription();
     refreshResult();
@@ -38,8 +34,22 @@ function CodeEditAndJudge() {
         method: 'GET',
       });
       const data = await response.json();
-      console.log(data.result);
-      setResult(data.result_description);
+      
+      if(result == null){
+        setResult("You havent submit any code yet");
+        return;
+      }
+      setResult(data.result_description +" submitted at "+data.time);
+      const resultArray = JSON.parse(data.result);
+      setBlockStatusArray(Array.from({ length: resultArray.length }, (_, index) => ({
+        status: resultArray[index]['status'] === 0 ? blockStatusEnum.ACCEPTED : 
+        resultArray[index]['status'] === 1 ? blockStatusEnum.UNKNOWN : 
+        resultArray[index]['status'] === 5 ? blockStatusEnum.TIMELIMIT : 
+        resultArray[index]['status'] === 6 ? blockStatusEnum.MEMORYLIMIT : 
+        resultArray[index]['status'] === 7 ? blockStatusEnum.WRONGANSWER :
+                blockStatusEnum.UNKNOWN,
+        time: (resultArray[index]['timeOutput'] * 1000) + "ms"
+      })));
     } catch (error) {
       console.error('Error', error); 
     }

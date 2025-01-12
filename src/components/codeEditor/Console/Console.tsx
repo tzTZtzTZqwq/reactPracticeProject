@@ -16,7 +16,7 @@ function CodeConsole({ consoleOutput }: CodeConsoleProps) {
   return (
     <div className="codeEditor-Console-root">
       <CodeMirror
-        value={consoleOutput}
+        value={typeof consoleOutput === 'string' ? consoleOutput : 'error 02 expected string but got: '+typeof consoleOutput}
         style={{ height: '100%', width: '100%' }}
         width="100%"
         height="100%"
