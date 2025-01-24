@@ -2,6 +2,7 @@ import CodeEditorInner from "./Editor/Editor";
 import CodeConsole from "./Console/Console";
 import CodeToolBar from "./ToolBar/ToolBar";
 import CodeInput from "./Input/Input"
+import {submitCode,runCode} from "@/apis/problem";
 
 import * as React from 'react';
 import "./codeEditor.css"
@@ -77,54 +78,7 @@ function CodeEditor({refresh}: codeEditorProps) {
   const [code, setCode] = React.useState<string>(localStorage.getItem('code') || defaultCode);
   const [consoleOutput, setConsoleOutput] = React.useState("");
   const [input, setInput] = React.useState<string>("");
-
-  const submitCode = async () => {
-    setConsoleOutput('Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.');
-    try {
-      const response = await fetch('https://java.tonyz.top/program/judge.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ code, input })
-      });
-      const data = await response.json();
-      if (typeof data.output === 'string') {
-        setConsoleOutput(data.output);
-      } else {
-        console.error('Expected output to be a string but got:', data.output);
-        setConsoleOutput("Error");
-      }
-      return data;
-    } catch (error) {
-      console.error('Error', error);
-      setConsoleOutput("Error"+error);
-    }
-  };
-
-  const runCode = async () => {
-    setConsoleOutput('Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.');
-    try {
-      const response = await fetch('https://java.tonyz.top/program/attempt.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ code, input })
-      });
-      const data = await response.json();
-      if (typeof data.output === 'string') {
-        setConsoleOutput(data.output);
-      } else {
-        console.error('error 01 got:', data.output);
-        setConsoleOutput("Error");
-      }
-      return data;
-    } catch (error) {
-      console.error('Error', error);
-      setConsoleOutput("Error"+error);
-    }
-  };
+  
 
   return (
     <div className="codeEditor-root">
@@ -132,7 +86,7 @@ function CodeEditor({refresh}: codeEditorProps) {
         <CodeEditorInner onCodeChange={setCode} initialCode={localStorage.getItem('code') || defaultCode}/>
       </div>
       <div className="CodeToolBar-container">
-        <CodeToolBar run={runCode} submit={submitCode} refresh={refresh}/>
+        <CodeToolBar run={() => runCode(code, input,setConsoleOutput)} submit={() => submitCode(code, input,setConsoleOutput)} refresh={refresh}/>
       </div>
       <div className="CodeConsoleInput-container">
         <div className="CodeConsole-container">
