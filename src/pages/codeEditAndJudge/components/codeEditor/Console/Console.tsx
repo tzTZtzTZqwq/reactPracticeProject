@@ -1,10 +1,9 @@
 import * as React from 'react';
 import CodeMirror, { EditorView, Panel, showPanel } from '@uiw/react-codemirror';
 import "./Console.css"
+import { store } from '../../../stores/code'
+import { useSnapshot } from 'valtio';
 
-type CodeConsoleProps = {
-  consoleOutput: string;
-}
 
 function codeConsoleInfoPanel(view: EditorView): Panel {
   let dom = document.createElement("div");
@@ -12,11 +11,12 @@ function codeConsoleInfoPanel(view: EditorView): Panel {
   return{dom}
 }
 
-function CodeConsole({ consoleOutput }: CodeConsoleProps) {
+function CodeConsole() {
+  const codeSnap = useSnapshot(store);
   return (
     <div className="codeEditor-Console-root">
       <CodeMirror
-        value={typeof consoleOutput === 'string' ? consoleOutput : 'error 02 expected string but got: '+typeof consoleOutput}
+        value={typeof codeSnap.output === 'string' ? codeSnap.output : 'error 02 expected string but got: '+typeof codeSnap.output}
         style={{ height: '100%', width: '100%' }}
         width="100%"
         height="100%"

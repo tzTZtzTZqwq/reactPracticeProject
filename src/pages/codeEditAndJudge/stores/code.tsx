@@ -1,18 +1,7 @@
-import CodeEditorInner from "./Editor/Editor";
-import CodeConsole from "./Console/Console";
-import CodeToolBar from "./ToolBar/ToolBar";
-import CodeInput from "./Input/Input"
-import {submitCode,runCode} from "@/apis/problem";
+import { proxy, useSnapshot } from 'valtio'
+import {submitCode,runCode,fetchDescription,fetchResult} from '@/apis/problem'
 
-import * as React from 'react';
-import "./codeEditor.css"
-
-type codeEditorProps = {
-  refresh: () => Promise<any>;
-}
-
-function CodeEditor({refresh}: codeEditorProps) {
-  const defaultCode = "import java.util.ArrayList;\n" +
+const defaultCode = "import java.util.ArrayList;\n" +
 "import java.util.Scanner;\n" +
 "public class Main {\n" +
 "    public static void main(String[] args) {\n" +
@@ -75,28 +64,53 @@ function CodeEditor({refresh}: codeEditorProps) {
 "    }\n" +
 "}\n";
 
-  const [code, setCode] = React.useState<string>(localStorage.getItem('code') || defaultCode);
-  const [consoleOutput, setConsoleOutput] = React.useState("");
-  const [input, setInput] = React.useState<string>("");
-  
 
-  return (
-    <div className="codeEditor-root">
-      <div className="CodeEditorInner-container">
-        <CodeEditorInner onCodeChange={setCode} initialCode={localStorage.getItem('code') || defaultCode}/>
-      </div>
-      <div className="CodeToolBar-container">
-        <CodeToolBar run={() => runCode(code, input,setConsoleOutput)} submit={() => submitCode(code, input,setConsoleOutput)} refresh={refresh}/>
-      </div>
-      <div className="CodeConsoleInput-container">
-        <div className="CodeConsole-container">
-          <CodeConsole consoleOutput={consoleOutput}/>
-        </div>
-        <div className="CodeInput-container">
-          <CodeInput onCodeChange={setInput}/>
-        </div>
-      </div>
-    </div> 
-  );
+export const store = proxy<{
+  code: string;
+  input: string;
+  output: string;
+  problemName: string;
+  problemDescription: string;
+  result:string
+  blockResultArray: Array<any>;
+}>({
+  code: localStorage.getItem('code') || defaultCode,
+  input: '',
+  output: '',
+  problemName: '',
+  problemDescription: '',
+  result: '',
+  blockResultArray: []
+})
+
+async function initializeData(){
+    store.problemDescription = await fetchDescription();
+    var attemptResult = await fetchResult();
+    store.result = attemptResult['result']
+    store.blockResultArray = attemptResult['blockStatusArray']
 }
-export default CodeEditor;
+
+async function runCodeS(){
+    store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
+    store.output = await runCode(store.code,store.input);
+}
+
+async function submitCodeS(){
+    store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
+    store.output = await submitCode(store.code,store.input);
+}
+
+async function refreshS() {
+    var attemptResult = await fetchResult();
+    store.result = attemptResult['result']
+    store.blockResultArray = attemptResult['blockStatusArray']
+}
+
+function logAll(){
+  console.log(store.code);
+  console.log(store.input);
+  console.log(store.output);
+}
+
+
+export {initializeData,runCodeS,submitCodeS,refreshS,logAll}

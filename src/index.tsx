@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter, Routes, Route } from "react-router";
 import CodeEditAndJudge from './pages/codeEditAndJudge/codeEditAndJudge';
+import Problems from './pages/problems/problems';
+import ProblemSets from './pages/problemSets/problemSets'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +14,8 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<CodeEditAndJudge />} />
+      <Route path="/problems" element={<Problems />} />
+      <Route path="/problemSets" element={<ProblemSets />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
