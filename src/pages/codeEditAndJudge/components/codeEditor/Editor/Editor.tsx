@@ -45,7 +45,7 @@ function CodeEditorInner() {
     <div className="codeEditor-Editor-root">
       <CodeMirror 
         value={typeof store.code === 'string' ? store.code : 'error 03 expected string but got: '+typeof store.code} 
-        height="100%" 
+        max-height="100%" 
         width="100%"
         style={{ height: '100%', width: '100%' }}
         basicSetup={{

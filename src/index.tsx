@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<CodeEditAndJudge />} />
+      <Route path="/attempt/:id" element={<CodeEditAndJudge />} />
       <Route path="/problems" element={<Problems />} />
       <Route path="/problemSets" element={<ProblemSets />} />
     </Routes>

@@ -2,28 +2,23 @@ import CodeEditorInner from "./Editor/Editor";
 import CodeConsole from "./Console/Console";
 import CodeToolBar from "./ToolBar/ToolBar";
 import CodeInput from "./Input/Input"
-import {submitCode,runCode} from "@/apis/problem";
-
-import * as React from 'react';
-import "./codeEditor.css"
+import { Grid2, Paper, Stack } from "@mui/material";
 
 function CodeEditor() {
   return (
-    <div className="codeEditor-root">
-      <div className="CodeEditorInner-container">
-        <CodeEditorInner/>
-      </div>
-      <div className="CodeToolBar-container">
-        <CodeToolBar/>
-      </div>
-      <div className="CodeConsoleInput-container">
-        <div className="CodeConsole-container">
-          <CodeConsole/>
+    <div style={{margin:'15px'}}>
+      <Paper sx={{padding:'10px'}}>
+        <div style={{height:'60vh'}}>
+          <CodeEditorInner/>
         </div>
-        <div className="CodeInput-container">
+        <div style={{height:'10%'}}>
+          <CodeToolBar/>
+        </div>
+        <div style={{height:'17vh',display:'flex'}}>
+          <CodeConsole/>
           <CodeInput/>
         </div>
-      </div>
+      </Paper>
     </div> 
   );
 }
