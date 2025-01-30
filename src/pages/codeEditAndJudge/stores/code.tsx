@@ -97,7 +97,7 @@ async function runCodeS(){
 
 async function submitCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await submitCode(store.code,store.input);
+    store.output = await submitCode(store.code,store.input,"two_sum");
 }
 
 async function refreshS() {

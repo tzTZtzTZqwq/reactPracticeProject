@@ -1,13 +1,13 @@
 import { SetStateAction } from "react";
 import { blockStatusEnum } from "@/defines/judgeDefines";
-const submitCode = async (code: string,input: string) => {
+const submitCode = async (code: string,input: string,problemName: string) => {
   try {
-    const response = await fetch('https://java.tonyz.top/program/judge.php', {
+    const response = await fetch('https://api.tonyz.top/attempts/submitCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ code, input })
+      body: JSON.stringify({ code, input,problemName })
     });
     const data = await response.json();
     if (typeof data.output === 'string') {
@@ -25,7 +25,7 @@ const submitCode = async (code: string,input: string) => {
 
 const runCode = async (code: string,input: string) => {
   try {
-    const response = await fetch('https://java.tonyz.top/program/attempt.php', {
+    const response = await fetch('https://api.tonyz.top/attempts/runCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ const fetchResult = async () => {
   var result = '';
   var blockStatusArray = [];
   try {
-    const response = await fetch('https://java.tonyz.top/program/getJudgeResult.php', {
+    const response = await fetch('https://api.tonyz.top/records/getJudgeResult', {
       method: 'GET',
     });
     const data = await response.json();
@@ -75,16 +75,19 @@ const fetchResult = async () => {
       return {result:result,blockStatusArray:[]};
     }
     result = data.result_description +" submitted at "+data.time;
-    const resultArray = JSON.parse(data.result);
-    blockStatusArray = (Array.from({ length: resultArray.length }, (_, index) => ({
-      status: resultArray[index]['status'] === 0 ? blockStatusEnum.ACCEPTED : 
-      resultArray[index]['status'] === 1 ? blockStatusEnum.UNKNOWN : 
-      resultArray[index]['status'] === 5 ? blockStatusEnum.TIMELIMIT : 
-      resultArray[index]['status'] === 6 ? blockStatusEnum.MEMORYLIMIT : 
-      resultArray[index]['status'] === 7 ? blockStatusEnum.WRONGANSWER :
-              blockStatusEnum.UNKNOWN,
-      time: (resultArray[index]['timeOutput'] * 1000) + "ms"
-    })));
+    console.log(data)
+    if(data.result!=''){
+      const resultArray = JSON.parse(data.result);
+      blockStatusArray = (Array.from({ length: resultArray.length }, (_, index) => ({
+        status: resultArray[index]['status'] === 0 ? blockStatusEnum.ACCEPTED : 
+        resultArray[index]['status'] === 1 ? blockStatusEnum.UNKNOWN : 
+        resultArray[index]['status'] === 5 ? blockStatusEnum.TIMELIMIT : 
+        resultArray[index]['status'] === 6 ? blockStatusEnum.MEMORYLIMIT : 
+        resultArray[index]['status'] === 7 ? blockStatusEnum.WRONGANSWER :
+                blockStatusEnum.UNKNOWN,
+        time: (resultArray[index]['timeOutput'] * 1000) + "ms"
+      })));
+    }
     return {result:result,blockStatusArray:blockStatusArray}
   } catch (error) {
     console.error('Error', error); 

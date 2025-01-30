@@ -7,6 +7,7 @@ function ProblemSets(){
         <div className="problemSets-root" >
             <NavBar/>
             <Detail/>
+            
         </div>
         
     )
