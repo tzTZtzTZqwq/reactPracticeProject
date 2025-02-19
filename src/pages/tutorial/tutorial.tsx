@@ -4,6 +4,7 @@ import { RichTreeView, TreeViewBaseItem } from '@mui/x-tree-view';
 import { ExpandMore, ChevronRight, Pages, ArrowForwardIosOutlined } from '@mui/icons-material';
 import { Box, Button, Container, Grid2, Paper, TextField } from '@mui/material';
 import ReactMarkdown, { Components } from "react-markdown";
+import {getTutorial} from '@/apis/tutorial';
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import '@/styles/githubLightCss.css';
@@ -14,64 +15,16 @@ function Tutorial() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [expandedNodes, setExpandedNodes] = React.useState<string[]>([]);
   const [highlightedNode, setHighlightedNode] = React.useState<string | null>(null);
-
-  const markdownText = `
-  A variable acts as a named reference to a specific location in memory where a data value is stored. When we declare a variable, we define its name and allocate memory space for it. 
-The first assignment of a value to this variable is called initialization, which stores the data in the associated memory location. Subsequent assignments modify the stored value, while reading the variable retrieves the current value from its memory location for use in operations or calculations. This mechanism allows programs to dynamically manage and manipulate data throughout their execution.
-
-In Java, declaring a variable involves specifying the data type and the variable name. The format for declaring a variable is as follows:
-\`\`\`
-[data_type] [variable_name];
-\`\`\`
----
-**Steps to declare a variable:**
-- Data Type: This specifies the type of data the variable will store, such as int for integers, double for floating-point numbers, String for text, etc.
-- Variable Name: This is the identifier that represents the variable in the program. It must follow Java’s naming rules, such as starting with a letter and not using any reserved keywords.
-
-\`\`\`
-public class Main {
-	public static void main(String[] args) {
-		int age;           // Declares an integer variable named 'age'
-		double price;      // Declares a double variable named 'price'
-		String name;       // Declares a String variable named 'name'
-	}
-}
-\`\`\`
-In this example:
-int is the data type for integer numbers.
-double is the data type for floating-point numbers.
-String is the data type for text (sequences of characters).
-
----
-
-**Assigning a Value to a Variable**
-
-In Java, the equal sign (=) is used as the assignment operator, which means that the value on the right-hand side (known as the right value or rvalue) is assigned to the variable on the left-hand side (the left value or lvalue). This process is known as assignment.
-
-The left side of the equal sign must be a variable (the place where the value will be stored).
-The right side is the value or expression that will be stored in the variable.
-[hello](https://markdown.com.cn)
-Once a variable is declared, it can be initialized with a value (assigned a value) at a later point. For example:
-\`\`\`
-public class Main {
-	public static void main(String[] args) {
-		int age = 25;           // Initializes the 'age' variable with a value of 25
-		double price = 19.99;      // Initializes the 'price' variable with a value of 19.99
-		String name = "Alice";     // Initializes the 'name' variable with the value "Alice"
-	}
-}
-\`\`\`
-
-The equal sign does **not** mean equality here, but rather that the right-hand side value is being assigned to the left-hand side variable.`;
+  const [markdownText, setMarkdownText] = React.useState('aaa');
 
   const MUI_X_PRODUCTS: TreeViewBaseItem[] = [
     {
       id: 'u0',
       label: '0 - Introduction',
       children: [
-      { id: 'grid-community', label: '@mui/x-data-grid' },
-      { id: 'grid-pro', label: '@mui/x-data-grid-pro' },
-      { id: 'grid-premium', label: '@mui/x-data-grid-premium' },
+      { id: 'd0-1', label: '0.1 Introduction' },
+      { id: 'd0-2', label: '0.2 About a Java program' },
+      { id: 'd0-3', label: '@mui/x-data-grid-premium' },
       ],
     },
     {
@@ -95,20 +48,22 @@ The equal sign does **not** mean equality here, but rather that the right-hand s
       children: [{ id: 'tree-view-community', label: '@mui/x-tree-view' }],
     },
     ];
-
-  const handleSelect = (event: React.SyntheticEvent, nodeId) => {
-    console.log(nodeId);
-    const selectedItem = findItemById(MUI_X_PRODUCTS, nodeId);
-    setExpandedNodes((prevExpandedNodes) => 
-      prevExpandedNodes.includes(nodeId) 
-        ? prevExpandedNodes.filter(id => id !== nodeId) 
-        : [...prevExpandedNodes, nodeId]
-    );
     
-    if (selectedItem && nodeId.includes('d')) {
-      setSelectedLabel(selectedItem.label);
-    }
-  };
+    const handleSelect = async (event: React.SyntheticEvent, nodeId) => {
+      const selectedItem = findItemById(MUI_X_PRODUCTS, nodeId);
+      setExpandedNodes((prevExpandedNodes) => 
+        prevExpandedNodes.includes(nodeId) 
+          ? prevExpandedNodes.filter(id => id !== nodeId) 
+          : [...prevExpandedNodes, nodeId]
+      );
+      
+      if (selectedItem && nodeId.includes('d')) {
+        setSelectedLabel(selectedItem.label);
+        console.log(markdownText);
+        setMarkdownText(await getTutorial(nodeId));
+        console.log(markdownText);
+      }
+    };
 
   const findItemById = (items: TreeViewBaseItem[], id: string): TreeViewBaseItem | undefined => {
     for (const item of items) {
@@ -171,32 +126,32 @@ The equal sign does **not** mean equality here, but rather that the right-hand s
     return [];
   };
 
-  const problemLink: React.FC<{ href: string }> = ({ href }) => {
-    
-      if(href.includes("problemlink")){
-        return (
-          <a href={href}>{href}</a>
-        )
-      }else{
-        return (
-        <div>  
-          <Paper sx={{height:'80px',width:'200px',padding:'5px'}}>
-            <Grid2 container spacing={1} sx={{height:'100%'}}>
+
+
+  const problemLink: React.FC<{href: string, children: React.ReactNode}> = ({ href, children }) => {
+    if (!href.includes("problemlink-1")) {
+      return <a href={href}>{children}</a>;
+    } else {
+      return (
+        <div>
+          <Paper sx={{width:'300px',height: '100%', padding: '5px',margin:'5px'}}>
+            <Grid2 container spacing={1} sx={{ height: '100%' }}>
               <Grid2 size={9}>
-                <p>Practice</p>
+                <p style={{fontSize:'20px',marginBottom:'5px'}}>Practice</p>
+                {children}
               </Grid2>
               <Grid2 size={3}>
-                <Button  sx={{width:'100%',minWidth:'30px',height:'100%'}}>
-                  <ArrowForwardIosOutlined></ArrowForwardIosOutlined>
+                <Button sx={{ width: '100%', minWidth: '30px', height: '100%' }}>
+                  <ArrowForwardIosOutlined />
                 </Button>
               </Grid2>
             </Grid2>
           </Paper>
         </div>
-        )
-      }
-    
+      );
+    }
   };
+
 
   const components : Components = {
     a: problemLink
@@ -235,9 +190,10 @@ The equal sign does **not** mean equality here, but rather that the right-hand s
                 className='markdown-body'
                 rehypePlugins={[rehypeHighlight,remarkGfm]}
                 components={components}
-              >
-                {markdownText}
-              </ReactMarkdown>
+                children={markdownText}
+              />
+                
+              
             </Container>
           </Box>
         </Grid2>
