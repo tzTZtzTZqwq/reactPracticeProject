@@ -3,6 +3,8 @@ import remarkGfm from 'remark-gfm';
 import { store } from '../../stores/code'
 import { useSnapshot } from 'valtio';
 import { Paper, Skeleton, Typography } from '@mui/material';
+import '@/styles/githubLightCss.css'
+import { ClassNames } from '@emotion/react';
 function Description(){
   const codeSnap = useSnapshot(store)
   if(codeSnap.problemDescription==''){
@@ -11,9 +13,8 @@ function Description(){
     )
   }else{
     return(
-    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-    {codeSnap.problemDescription}
-    </ReactMarkdown>)
+    <ReactMarkdown remarkPlugins={[remarkGfm]} children={codeSnap.problemDescription} className='markdown-body'/>
+    )
   }
 }
 function ProblemDetail() {

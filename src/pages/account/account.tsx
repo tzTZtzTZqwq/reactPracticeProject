@@ -6,7 +6,7 @@ import NavBar from "@/components/navBar/navBar";
 import * as React from 'react';
 
 import Login from "./components/login";
-import Register from "./components/reginster";
+import Register from "./components/register";
 
 function Account(){
     const [selectedTab, setsSlectedTab] = React.useState('1');

@@ -3,25 +3,42 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router';
+import { useEffect, useState } from 'react';
+
 function NavBar(){
+    const [loginButtonText, setLoginButtonText] = useState('Login');
+
+    useEffect(() => {
+        const username = document.cookie.includes('username=') ? document.cookie.split('username=')[1].split(';')[0] : 'Login';
+        setLoginButtonText(username);
+    }, []);
+
     return(
         <div className='navbar-root'>
-            <AppBar position="static">
+            <AppBar position="static" sx={{height:'60px'}}>
                 <Toolbar>
                 <Typography variant="h6" component="div" sx={{minWidth:'100px'}}>
                     OJ
                 </Typography>
-                <Link to="/tasks">
-                <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>tasks</Button>
-                </Link>
+                {/*tasks*/}
                 <Link to="/problems">
                 <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>problems</Button>
                 </Link>
                 <Link to="/problemSets">
                 <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>problemsets</Button>
                 </Link>
+                <Link to="/account">
+                <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>accounts</Button>
+                </Link>
+                <Link to="/management">
+                <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>management</Button>
+                </Link>
+                <Link to="/tutorial">
+                <Button variant="contained" sx={{marginRight:'20px',minWidth:'100px'}}>tutorial</Button>
+                </Link>
                 <div style={{flexGrow:1}}></div>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit">{loginButtonText}</Button>
+                
                 </Toolbar>
             </AppBar>
         </div>

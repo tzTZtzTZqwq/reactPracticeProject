@@ -1,0 +1,72 @@
+"filename", "language", "XML", "TypeScript JSX", "CSS", "TypeScript", "JSON", "JSON with Comments", "Markdown", "HTML", "JavaScript", "comment", "blank", "total"
+"/Users/2025sa-czhangkaitong/react-tsapp/README.md", "Markdown", 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 21, 47
+"/Users/2025sa-czhangkaitong/react-tsapp/craco.config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 1, 9
+"/Users/2025sa-czhangkaitong/react-tsapp/package-lock.json", "JSON", 0, 0, 0, 0, 20247, 0, 0, 0, 0, 0, 20248, 40495
+"/Users/2025sa-czhangkaitong/react-tsapp/package.json", "JSON", 0, 0, 0, 0, 56, 0, 0, 0, 0, 0, 57, 113
+"/Users/2025sa-czhangkaitong/react-tsapp/public/index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 20, 0, 23, 1, 44
+"/Users/2025sa-czhangkaitong/react-tsapp/public/manifest.json", "JSON", 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 1, 26
+"/Users/2025sa-czhangkaitong/react-tsapp/src/apis/account.ts", "TypeScript", 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 2, 24
+"/Users/2025sa-czhangkaitong/react-tsapp/src/apis/apiDefines.ts", "TypeScript", 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1, 4
+"/Users/2025sa-czhangkaitong/react-tsapp/src/apis/problem.ts", "TypeScript", 0, 0, 0, 88, 0, 0, 0, 0, 0, 5, 5, 98
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/compactList/compactList.tsx", "TypeScript JSX", 0, 35, 0, 0, 0, 0, 0, 0, 0, 0, 2, 37
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/navBar/navBar.tsx", "TypeScript JSX", 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 4, 46
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/problemList/problemItem.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/problemList/problemItem.tsx", "TypeScript JSX", 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/problemList/problemList.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/components/problemList/problemList.tsx", "TypeScript JSX", 0, 34, 0, 0, 0, 0, 0, 0, 0, 0, 1, 35
+"/Users/2025sa-czhangkaitong/react-tsapp/src/defines/judgeDefines.ts", "TypeScript", 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 3, 19
+"/Users/2025sa-czhangkaitong/react-tsapp/src/defines/tagDefines.ts", "TypeScript", 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 1, 8
+"/Users/2025sa-czhangkaitong/react-tsapp/src/index.css", "CSS", 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 3, 11
+"/Users/2025sa-czhangkaitong/react-tsapp/src/index.tsx", "TypeScript JSX", 0, 30, 0, 0, 0, 0, 0, 0, 0, 3, 4, 37
+"/Users/2025sa-czhangkaitong/react-tsapp/src/logo.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/account/account.tsx", "TypeScript JSX", 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 4, 43
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/account/components/login.tsx", "TypeScript JSX", 0, 42, 0, 0, 0, 0, 0, 0, 0, 1, 3, 46
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/account/components/password.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/account/components/register.tsx", "TypeScript JSX", 0, 71, 0, 0, 0, 0, 0, 0, 0, 0, 4, 75
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/codeEditAndJudge.tsx", "TypeScript JSX", 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 7, 40
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Console/Console.css", "CSS", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Console/Console.tsx", "TypeScript JSX", 0, 29, 0, 0, 0, 0, 0, 0, 0, 0, 3, 32
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Editor/Editor.css", "CSS", 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Editor/Editor.tsx", "TypeScript JSX", 0, 66, 0, 0, 0, 0, 0, 0, 0, 0, 6, 72
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Input/Input.css", "CSS", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/Input/Input.tsx", "TypeScript JSX", 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 6, 42
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/ToolBar/ToolBar.css", "CSS", 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 2, 10
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/ToolBar/ToolBar.tsx", "TypeScript JSX", 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 3, 28
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/codeEditor/codeEditor.tsx", "TypeScript JSX", 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/judgePanel/block/block.css", "CSS", 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 4, 26
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/judgePanel/block/block.tsx", "TypeScript JSX", 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 3, 18
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/judgePanel/judgePanel.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 5, 27
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/components/problemDetail/problemDetail.tsx", "TypeScript JSX", 0, 31, 0, 0, 0, 0, 0, 0, 0, 0, 2, 33
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/codeEditAndJudge/stores/code.tsx", "TypeScript JSX", 0, 106, 0, 0, 0, 0, 0, 0, 0, 0, 10, 116
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/activitiesManagement.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/groupsManagement.tsx", "TypeScript JSX", 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/newTask/newProgrammingTask.tsx", "TypeScript JSX", 0, 72, 0, 0, 0, 0, 0, 0, 0, 0, 3, 75
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/tasksManagement.tsx", "TypeScript JSX", 0, 37, 0, 0, 0, 0, 0, 0, 0, 0, 6, 43
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/userList/groupList.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 4, 32
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/userList/problemList.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 5, 33
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/userList/userList.tsx", "TypeScript JSX", 0, 92, 0, 0, 0, 0, 0, 0, 0, 1, 10, 103
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/components/usersManagement.tsx", "TypeScript JSX", 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/management/management.tsx", "TypeScript JSX", 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 2, 42
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSet/components/description.tsx", "TypeScript JSX", 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 2, 18
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSet/problemSet.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSet/problemSet.tsx", "TypeScript JSX", 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/components/detail.css", "CSS", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/components/detail.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 3, 25
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/components/setBar/setBar.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/components/setItem/setItem.tsx", "TypeScript JSX", 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 1, 25
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/problemSets.css", "CSS", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problemSets/problemSets.tsx", "TypeScript JSX", 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/outline.css", "CSS", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/outline.tsx", "TypeScript JSX", 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 36
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemCard/problemCard.css", "CSS", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemCard/problemCard.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemList/problemItem.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemList/problemItem.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemList/problemList.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/components/problemList/problemList.tsx", "TypeScript JSX", 0, 34, 0, 0, 0, 0, 0, 0, 0, 0, 1, 35
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/problems.css", "CSS", 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/problems/problems.tsx", "TypeScript JSX", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 2, 16
+"/Users/2025sa-czhangkaitong/react-tsapp/src/pages/tasks/tasks.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"/Users/2025sa-czhangkaitong/react-tsapp/src/styles/omniMarkdownCss.css", "CSS", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 6, 45
+"/Users/2025sa-czhangkaitong/react-tsapp/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 13, 0, 0, 0, 1, 0, 14
+"Total", "-", 1, 1272, 108, 135, 20328, 13, 26, 20, 8, 35, 20479, 42425

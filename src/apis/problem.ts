@@ -1,8 +1,23 @@
 import { SetStateAction } from "react";
 import { blockStatusEnum } from "@/defines/judgeDefines";
+import { apiRoot } from "./apiDefines";
+
+const getProblemList = async () => {
+  try {
+    const response = await fetch(apiRoot+'/problems/getProblemList');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error', error);
+    return [];
+  }
+}
+
+
+
 const submitCode = async (code: string,input: string,problemName: string) => {
   try {
-    const response = await fetch('https://api.tonyz.top/attempts/submitCode', {
+    const response = await fetch(apiRoot+'/attempts/submitCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +40,7 @@ const submitCode = async (code: string,input: string,problemName: string) => {
 
 const runCode = async (code: string,input: string) => {
   try {
-    const response = await fetch('https://api.tonyz.top/attempts/runCode', {
+    const response = await fetch(apiRoot+'/attempts/runCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,11 +65,12 @@ const runCode = async (code: string,input: string) => {
 //  description:string the description of the problem ~200 words
 const fetchDescription = async () => {
   try {
-    const response = await fetch('https://java.tonyz.top/program/getProblem.php');
+    const response = await fetch(apiRoot+'/records/getProblem');
     const data = await response.json();
     return data.description;
   } catch (error) {
     console.error('Error fetching description:', error);
+    return "failed to fetch description";
   }
 };
 
@@ -65,7 +81,7 @@ const fetchResult = async () => {
   var result = '';
   var blockStatusArray = [];
   try {
-    const response = await fetch('https://api.tonyz.top/records/getJudgeResult', {
+    const response = await fetch(apiRoot+'/records/getJudgeResult', {
       method: 'GET',
     });
     const data = await response.json();
@@ -91,7 +107,8 @@ const fetchResult = async () => {
     return {result:result,blockStatusArray:blockStatusArray}
   } catch (error) {
     console.error('Error', error); 
+    return [];
   }
 };
 
-export {submitCode,runCode,fetchDescription,fetchResult}
+export {submitCode,runCode,fetchDescription,fetchResult,getProblemList}

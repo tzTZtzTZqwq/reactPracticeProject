@@ -50,10 +50,9 @@ function CodeEditorInner() {
         style={{ height: '100%', width: '100%' }}
         basicSetup={{
           tabSize: 4,
-          indentUnit: 4,
           autocompletion: true,
           closeBrackets: true,
-          matchBrackets: true,
+          bracketMatching: true,
           lineNumbers: true,
           foldGutter: true,
           indentOnInput: true,

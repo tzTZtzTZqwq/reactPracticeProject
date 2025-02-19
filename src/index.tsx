@@ -7,6 +7,9 @@ import Problems from './pages/problems/problems';
 import ProblemSets from './pages/problemSets/problemSets'
 import ProblemSet from './pages/problemSet/problemSet'
 import Account from './pages/account/account';
+import Tasks from './pages/tasks/tasks';
+import ManageMent from './pages/management/management';
+import Tutorial from './pages/tutorial/tutorial';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +18,15 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
+      <Route path="/" element={<Problems />} />
+      <Route path="/tasks" element={<Tasks />} />
       <Route path="/attempt/:id" element={<CodeEditAndJudge />} />
       <Route path="/problems" element={<Problems />} />
       <Route path="/problemsets" element={<ProblemSets />} />
       <Route path="/problemset/:id" element={<ProblemSet />} />
       <Route path="/account" element={<Account />} />
+      <Route path="/management" element={<ManageMent />} />
+      <Route path="/tutorial" element={<Tutorial />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
