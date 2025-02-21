@@ -104,6 +104,7 @@ async function refreshS() {
     var attemptResult = await fetchResult();
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
+    console.log(store.blockResultArray);
 }
 
 function logAll(){

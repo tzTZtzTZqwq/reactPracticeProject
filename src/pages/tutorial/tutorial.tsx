@@ -1,13 +1,14 @@
 import * as React from 'react';
 import NavBar from '@/components/navBar/navBar';
 import { RichTreeView, TreeViewBaseItem } from '@mui/x-tree-view';
-import { ExpandMore, ChevronRight, Pages, ArrowForwardIosOutlined } from '@mui/icons-material';
+import { ArrowForwardIosOutlined } from '@mui/icons-material';
 import { Box, Button, Container, Grid2, Paper, TextField } from '@mui/material';
 import ReactMarkdown, { Components } from "react-markdown";
 import {getTutorial} from '@/apis/tutorial';
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import '@/styles/githubLightCss.css';
+import MinicodeEditor from './components/minicodeEditor'
 
 function Tutorial() {
   const [selectedLabel, setSelectedLabel] = React.useState('title');
@@ -152,9 +153,29 @@ function Tutorial() {
     }
   };
 
+  const codeBlock: React.FC<{ children: React.ReactNode}> = ({ children }) => {
+    
+    const code = children.toString()
+    if(code.includes('\n')){
+      return(
+        <div>
+          <MinicodeEditor Icode={code} />
+        </div>
+      )
+    }else{
+      return (
+        <code>
+          {children}
+        </code>
+      )
+    }
+    
+  }
+
 
   const components : Components = {
-    a: problemLink
+    a: problemLink,
+    code: codeBlock
   }
 
   return (

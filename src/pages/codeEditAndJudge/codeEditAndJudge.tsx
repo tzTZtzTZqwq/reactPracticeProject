@@ -26,7 +26,7 @@ function CodeEditAndJudge() {
       <div style={{display:'flex'}}>
         <div style={{width:'30%', display:'flex',flexDirection:'column',margin:'15px',marginRight:'0px'}}>
         <ProblemDetail></ProblemDetail>
-        <JudgeStatsPanel blockStatusArray={[]} result={codeSnap.result} />
+        <JudgeStatsPanel blockStatusArray={codeSnap.blockResultArray} result={codeSnap.result} />
         </div>
         <div style={{width:'70%'}}>
         <CodeEditor/>
