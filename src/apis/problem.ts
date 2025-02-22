@@ -15,14 +15,14 @@ const getProblemList = async () => {
 
 
 
-const submitCode = async (code: string,input: string,problemName: string) => {
+const submitCode = async (code: string,input: string,problem_index: string) => {
   try {
     const response = await fetch(apiRoot+'/attempts/submitCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ code, input,problemName })
+      body: JSON.stringify({ code, input,problem_index })
     });
     const data = await response.json();
     if (typeof data.output === 'string') {
@@ -38,14 +38,14 @@ const submitCode = async (code: string,input: string,problemName: string) => {
   }
 };
 
-const runCode = async (code: string,input: string) => {
+const runCode = async (code: string,input: string,problem_index:string = "") => {
   try {
     const response = await fetch(apiRoot+'/attempts/runCode', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ code, input })
+      body: JSON.stringify({ code, input,problem_index })
     });
     const data = await response.json();
     if (typeof data.output === 'string') {
@@ -63,9 +63,15 @@ const runCode = async (code: string,input: string) => {
 
 //returns
 //  description:string the description of the problem ~200 words
-const fetchDescription = async () => {
+const fetchDescription = async (problem_index) => {
   try {
-    const response = await fetch(apiRoot+'/records/getProblem');
+    const response = await fetch(apiRoot+'/records/getProblem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({problem_index})
+    });
     const data = await response.json();
     return data.description;
   } catch (error) {

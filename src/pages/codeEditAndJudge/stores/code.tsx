@@ -69,6 +69,7 @@ export const store = proxy<{
   code: string;
   input: string;
   output: string;
+  problemIndex: string;
   problemName: string;
   problemDescription: string;
   result:string
@@ -77,14 +78,16 @@ export const store = proxy<{
   code: localStorage.getItem('code') || defaultCode,
   input: '',
   output: '',
+  problemIndex: '',
   problemName: '',
   problemDescription: '',
   result: '',
   blockResultArray: []
 })
 
-async function initializeData(){
-    store.problemDescription = await fetchDescription();
+async function initializeData(problemIndex:string){
+    store.problemIndex = problemIndex;
+    store.problemDescription = await fetchDescription(problemIndex.toString());
     var attemptResult = await fetchResult();
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
@@ -92,19 +95,18 @@ async function initializeData(){
 
 async function runCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await runCode(store.code,store.input);
+    store.output = await runCode(store.code,store.input,"2");
 }
 
 async function submitCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await submitCode(store.code,store.input,"two_sum");
+    store.output = await submitCode(store.code,store.input,"2");
 }
 
 async function refreshS() {
     var attemptResult = await fetchResult();
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
-    console.log(store.blockResultArray);
 }
 
 function logAll(){
