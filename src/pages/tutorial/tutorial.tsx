@@ -16,7 +16,7 @@ function Tutorial() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [expandedNodes, setExpandedNodes] = React.useState<string[]>([]);
   const [highlightedNode, setHighlightedNode] = React.useState<string | null>(null);
-  const [markdownText, setMarkdownText] = React.useState('aaa');
+  const [markdownText, setMarkdownText] = React.useState('在右侧选择目录');
 
   const MUI_X_PRODUCTS: TreeViewBaseItem[] = [
     {
@@ -24,8 +24,7 @@ function Tutorial() {
       label: '0 - Introduction',
       children: [
       { id: 'd0-1', label: '0.1 Introduction' },
-      { id: 'd0-2', label: '0.2 About a Java program' },
-      { id: 'd0-3', label: '@mui/x-data-grid-premium' },
+      { id: 'd0-2', label: '0.2 About a Java program(无内容)' },
       ],
     },
     {
@@ -34,19 +33,9 @@ function Tutorial() {
       children: [
       { id: 'd1-1', label: '1.1 Declaring and changing variables in Java' },
       { id: 'd1-2', label: '1.2 Primitive Data Types in Java' },
-      { id: 'd1-3', label: '1.3 Arithmetic Operators and Expressions' },
-      { id: 'd1-4', label: '1.4 Data Conversion' },
+      { id: 'd1-3', label: '1.3 Arithmetic Operators and Expressions(无内容)' },
+      { id: 'd1-4', label: '1.4 Data Conversion(无内容)' },
       ],
-    },
-    {
-      id: 'charts',
-      label: 'Charts',
-      children: [{ id: 'charts-community', label: '@mui/x-charts' }],
-    },
-    {
-      id: 'tree-view',
-      label: 'Tree View',
-      children: [{ id: 'tree-view-community', label: '@mui/x-tree-view' }],
     },
     ];
     

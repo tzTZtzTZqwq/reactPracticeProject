@@ -10,12 +10,17 @@ import { useSnapshot } from 'valtio';
 
 function CodeEditorInner() {
 
+  const codeSnap = useSnapshot(store);
+
   const myCompletions = context => {
     let word = context.matchBefore(/\w*/)
     if(!word || (word.from === word.to && !context.explicit)) return null
     return {
       from: word.from,
-      options: []//[{label: "sout", type: "keyword", apply:"System.out.println("}]
+      options: [
+        {label: "sout", type: "keyword", apply:"System.out.println("},
+        {label: "for", type: "keyword", apply:"for\(\)\{\n\n\}"}
+      ]
     }
   }
   
@@ -44,8 +49,8 @@ function CodeEditorInner() {
   return (
     <div className="codeEditor-Editor-root">
       <CodeMirror 
-        value={typeof store.code === 'string' ? store.code : 'error 03 expected string but got: '+typeof store.code} 
-        max-height="100%" 
+        value={typeof codeSnap.code === 'string' ? codeSnap.code : 'error 03 expected string but got: '+typeof codeSnap.code} 
+        height="100%" 
         width="100%"
         style={{ height: '100%', width: '100%' }}
         basicSetup={{

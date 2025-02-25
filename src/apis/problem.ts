@@ -63,7 +63,7 @@ const runCode = async (code: string,input: string,problem_index:string = "") => 
 
 //returns
 //  description:string the description of the problem ~200 words
-const fetchDescription = async (problem_index) => {
+const fetchProblemDetail = async (problem_index) => {
   try {
     const response = await fetch(apiRoot+'/records/getProblem', {
       method: 'POST',
@@ -73,12 +73,14 @@ const fetchDescription = async (problem_index) => {
       body: JSON.stringify({problem_index})
     });
     const data = await response.json();
-    return data.description;
+    return data;
   } catch (error) {
     console.error('Error fetching description:', error);
     return "failed to fetch description";
   }
 };
+
+
 
 //returns
 //  result:string the description of result ~40 words
@@ -96,8 +98,13 @@ const fetchResult = async () => {
       result = "You havent submit any code yet";
       return {result:result,blockStatusArray:[]};
     }
-    result = data.result_description +" submitted at "+data.time;
-    console.log(data)
+
+    if(data.result_description==""){
+      result = "你还没有提交过代码"
+    }else{
+      result = "上次提交时间:"+data.time+",上次提交结果:通过了"+data.result_description + "个测试用例";
+    }
+    
     if(data.result!=''){
       const resultArray = JSON.parse(data.result);
       blockStatusArray = (Array.from({ length: resultArray.length }, (_, index) => ({
@@ -106,8 +113,11 @@ const fetchResult = async () => {
         resultArray[index]['status'] === 5 ? blockStatusEnum.TIMELIMIT : 
         resultArray[index]['status'] === 6 ? blockStatusEnum.MEMORYLIMIT : 
         resultArray[index]['status'] === 7 ? blockStatusEnum.WRONGANSWER :
+        resultArray[index]['status'] === 8 ? blockStatusEnum.RUNTIMEERROR :
                 blockStatusEnum.UNKNOWN,
-        time: (resultArray[index]['timeOutput'] * 1000) + "ms"
+        time: (resultArray[index]['timeOutput'] * 1000) + "ms",
+        memory:   resultArray[index]['memory'] + "KB",
+        resultGroup: resultArray[index]['resultGroup']
       })));
     }
     return {result:result,blockStatusArray:blockStatusArray}
@@ -117,4 +127,4 @@ const fetchResult = async () => {
   }
 };
 
-export {submitCode,runCode,fetchDescription,fetchResult,getProblemList}
+export {submitCode,runCode,fetchProblemDetail,fetchResult,getProblemList}

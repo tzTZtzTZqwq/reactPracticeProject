@@ -6,10 +6,10 @@ function SetItem(){
             <Card sx={{height:'200px'}}>
                 <CardContent>
                     <Typography sx={{ fontSize: 28 }}>
-                        P1022
+                        /
                     </Typography>
                     <Typography variant='body1' sx={{ fontSize:14,wordBreak:'break-all'}}>
-                        111111111121111111kljbhjvkg hbjnkbjklhvjkgch
+                        /
                     </Typography>
                    
                 </CardContent>

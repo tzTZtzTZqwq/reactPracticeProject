@@ -18,11 +18,12 @@ function Description(){
   }
 }
 function ProblemDetail() {
+  const codeSnap = useSnapshot(store)
   return (
     <div className="problemDetail-root">
       <Paper sx={{padding:'10px',overflow:'scroll',height:'60vh'}}>
         <Typography variant='h5'>
-          two sum
+          {codeSnap.problemName}
         </Typography>
         <Description/>
       </Paper>

@@ -15,8 +15,12 @@ function CodeEditor() {
           <CodeToolBar/>
         </div>
         <div style={{height:'17vh',display:'flex'}}>
+          <div style={{width:'70%'}}>
           <CodeConsole/>
+          </div>
+          <div style={{width:'30%'}}>
           <CodeInput/>
+          </div>
         </div>
       </Paper>
     </div> 

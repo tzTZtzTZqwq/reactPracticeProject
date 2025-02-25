@@ -1,5 +1,5 @@
 import { proxy, useSnapshot } from 'valtio'
-import {submitCode,runCode,fetchDescription,fetchResult} from '@/apis/problem'
+import {submitCode,runCode,fetchProblemDetail,fetchResult} from '@/apis/problem'
 
 const defaultCode = "import java.util.ArrayList;\n" +
 "import java.util.Scanner;\n" +
@@ -72,22 +72,33 @@ export const store = proxy<{
   problemIndex: string;
   problemName: string;
   problemDescription: string;
+  defaultCode:string;
   result:string
-  blockResultArray: Array<any>;
+  ifUsingRawInput:boolean,
+  blockResultArray: Array<any>,
+  inputForm:any
 }>({
   code: localStorage.getItem('code') || defaultCode,
   input: '',
   output: '',
+  defaultCode: '',
   problemIndex: '',
   problemName: '',
   problemDescription: '',
   result: '',
-  blockResultArray: []
+  ifUsingRawInput: false,
+  blockResultArray: [],
+  inputForm: [{type:"string[]",text:"nums"}]
 })
 
 async function initializeData(problemIndex:string){
     store.problemIndex = problemIndex;
-    store.problemDescription = await fetchDescription(problemIndex.toString());
+    var problemDetail = await fetchProblemDetail(problemIndex.toString());
+    store.problemDescription = problemDetail['description'];
+    store.defaultCode = problemDetail['default_code'];
+    store.problemName = problemDetail['title'];
+    store.code = store.defaultCode;
+    store.inputForm = JSON.parse(problemDetail['input_form'])['form'];
     var attemptResult = await fetchResult();
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
@@ -95,12 +106,14 @@ async function initializeData(problemIndex:string){
 
 async function runCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await runCode(store.code,store.input,"2");
+    store.output = await runCode(store.code,store.input,store.problemIndex);
 }
 
 async function submitCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await submitCode(store.code,store.input,"2");
+    const result = await submitCode(store.code, store.input, store.problemIndex);
+    console.log(result);
+    store.output = /^[0-9]$/.test(result) ? '按refresh刷新状态' : result;
 }
 
 async function refreshS() {

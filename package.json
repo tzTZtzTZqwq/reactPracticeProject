@@ -36,10 +36,6 @@
 
     "cra-template-typescript": "1.2.0",
 
-    "highlight.js": "^11.11.1",
-
-    "pinia": "^2.3.0",
-
     "react": "^19.0.0",
 
     "react-dom": "^19.0.0",
@@ -51,8 +47,6 @@
     "react-scripts": "5.0.1",
 
     "rehype-highlight": "^7.0.2",
-
-    "remark-code-blocks": "^2.0.1",
 
     "remark-gfm": "^4.0.0",
 
