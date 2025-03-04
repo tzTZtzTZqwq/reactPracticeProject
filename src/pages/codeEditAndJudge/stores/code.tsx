@@ -66,17 +66,20 @@ const defaultCode = "import java.util.ArrayList;\n" +
 
 
 export const store = proxy<{
-  code: string;
-  input: string;
-  output: string;
-  problemIndex: string;
-  problemName: string;
+  code: string;//代码
+  input: string;//输入
+  output: string;//控制台输出
+  problemIndex: string;//题目编号(数字)
+  problemName: string;//题目名
   problemDescription: string;
-  defaultCode:string;
-  result:string
-  ifUsingRawInput:boolean,
-  blockResultArray: Array<any>,
-  inputForm:any
+  defaultCode:string;//进入题目的时候显示的默认代码
+  result:string//判题结果
+  ifUsingInput:boolean,//是否正在显示输入
+  blockResultArray: Array<any>,//判题结果方块
+  inputForm:any//输入表单格式
+  inputFormResultArray:Array<any>,//输入表单结果
+  ifHoveringRunButton: boolean,//鼠标悬浮于执行按钮
+  ifHoveringSubmitButton: boolean,//鼠标悬浮于提交按钮
 }>({
   code: localStorage.getItem('code') || defaultCode,
   input: '',
@@ -86,9 +89,14 @@ export const store = proxy<{
   problemName: '',
   problemDescription: '',
   result: '',
-  ifUsingRawInput: false,
+  ifUsingInput: false,
   blockResultArray: [],
-  inputForm: [{type:"string[]",text:"nums"}]
+  //inputForm: [],
+  inputForm: {form:[{name:"void recordPlay(int score)",func:'recordPlay'},{name:'String getScore()',func:'getScore'},{name:'Scoreboard(String team1, String team2)',func:'Scoreboard'}],
+              default:[{func:'Scoreboard',param:'Red,Blue'},{func:'recordPlay',param:'0'},{func:'getScore',param:''}]},
+  inputFormResultArray: [],
+  ifHoveringRunButton: false,
+  ifHoveringSubmitButton: false,
 })
 
 async function initializeData(problemIndex:string){
@@ -98,7 +106,12 @@ async function initializeData(problemIndex:string){
     store.defaultCode = problemDetail['default_code'];
     store.problemName = problemDetail['title'];
     store.code = store.defaultCode;
-    store.inputForm = JSON.parse(problemDetail['input_form'])['form'];
+    //store.inputForm = JSON.parse(problemDetail['input_form'])['form'];
+    store.inputFormResultArray = store.inputForm.default.map(item => {
+      const formItem = store.inputForm.form.find(f => f.func === item.func);
+      return { ...item, name: formItem ? formItem.name : '' };
+    });
+    console.log(store.inputFormResultArray);
     var attemptResult = await fetchResult();
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
@@ -106,7 +119,13 @@ async function initializeData(problemIndex:string){
 
 async function runCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
-    store.output = await runCode(store.code,store.input,store.problemIndex);
+    const inputData = [
+      store.inputFormResultArray.length,
+      ...store.inputFormResultArray.map(item => item.func),
+      ...store.inputFormResultArray.map(item => item.param)
+    ].join('\n');
+    
+    store.output = await runCode(store.code, inputData, store.problemIndex);
 }
 
 async function submitCodeS(){

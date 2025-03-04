@@ -5,33 +5,63 @@ import * as React from 'react';
 import { store,runCodeS,submitCodeS,refreshS,logAll } from '../../../stores/code'
 import { useSnapshot } from 'valtio';
 import { Paper, Switch, Tooltip } from "@mui/material";
+import { PlayCircle, Refresh } from "@mui/icons-material";
 
 function CodeToolBar() {
     const codeSnap = useSnapshot(store);
     return (
         <div className="codeEditor-ToolBar-root" style={{display:'flex',padding:'10px',gap:'10px'}}>
-            <Tooltip title="运行代码，在右下角设置输入，运行后可查看输出">
-            <Button variant="contained" onClick={async() => await runCodeS()}>
-                Run
+            <Tooltip title="先在右下角设置函数的参数，执行后可查看输出">
+            <Button 
+                variant="contained" 
+                onClick={async() => await runCodeS()}
+                onMouseEnter={() => store.ifHoveringRunButton = true}
+                onMouseLeave={() => store.ifHoveringRunButton = false}
+            >
+                <p style={{fontSize:'10px',margin:'0'}}> Run - 执行 </p>
+               
             </Button>
             </Tooltip>
-            <Tooltip title="提交代码，用设置好的数据测试程序输出，只能查看程序输出是否正确">
-            <Button variant="contained" onClick={async() => await submitCodeS()}>
-                Submit
+            <Tooltip title="测试代码结果是否正确">
+            <Button 
+                variant="contained" 
+                onClick={async() => await submitCodeS()}
+                onMouseEnter={() => store.ifHoveringSubmitButton = true}
+                onMouseLeave={() => store.ifHoveringSubmitButton = false}
+            >
+                <p style={{fontSize:'10px',margin:'0'}}> Submit - 提交 </p>
             </Button>
             </Tooltip>
             <Tooltip title="刷新提交记录">
-            <Button variant="contained" onClick={async() => await refreshS()}>
-                Refresh
+            <Button 
+                variant="contained" 
+                onClick={async() => await refreshS()}
+            >
+                <p style={{fontSize:'10px',margin:'0'}}> Refresh - 刷新 </p>
             </Button>
             </Tooltip>
-            <Button variant="outlined" onClick={async() => logAll()} sx={{display:'none'}}>
-                LOG
+            <Tooltip title="重置代码">
+            <Button 
+                sx={{width:'30px',minWidth:'30px',height:'30px',maxHeight:'30px'}}
+                variant="contained" 
+                onClick={async() => await refreshS()}
+            >
+                <Refresh/>
             </Button>
-            <Paper sx={{display:'flex',paddingLeft:'10px',paddingRight:'10px'}}>
-            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>input form</p>
-            <Switch onChange={()=>{store.ifUsingRawInput = !codeSnap.ifUsingRawInput}} sx={{ transform: 'scale(0.9)' }}/>
-            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>raw input</p>
+            </Tooltip>
+            <Button 
+                variant="outlined" 
+                onClick={async() => logAll()} 
+                sx={{display:'none'}}
+            >
+                
+                LOG
+                
+            </Button>
+            <Paper sx={{display:'flex',paddingLeft:'10px',paddingRight:'10px',height:'30px'}}>
+            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>设置输入</p>
+            <Switch onChange={()=>{store.ifUsingInput = !codeSnap.ifUsingInput}} sx={{ transform: 'scale(0.8)',alignSelf:'center'}}/>
+            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>查看输出</p>
             </Paper>
         </div>
     );

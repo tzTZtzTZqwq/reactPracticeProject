@@ -25,10 +25,13 @@ function CodeEditAndJudge() {
     <div>
       <NavBar />
       <div style={{ display: 'flex' }}>
-        <div style={{ width: '30%', display: 'flex', flexDirection: 'column', margin: '15px', marginRight: '0px' }}>
+        
+
+        <div style={{width:'30%',height:'84vh'}}>
           <ProblemDetail />
-          <JudgeStatsPanel blockStatusArray={codeSnap.blockResultArray} result={codeSnap.result} />
         </div>
+          
+        
         <div style={{ width: '70%' }}>
           <CodeEditor />
         </div>
@@ -38,3 +41,9 @@ function CodeEditAndJudge() {
 }
 
 export default CodeEditAndJudge;
+/*
+
+<div>
+            <JudgeStatsPanel blockStatusArray={codeSnap.blockResultArray} result={codeSnap.result} />
+          </div>
+          */

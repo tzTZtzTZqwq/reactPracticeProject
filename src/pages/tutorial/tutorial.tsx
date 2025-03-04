@@ -49,9 +49,9 @@ function Tutorial() {
       
       if (selectedItem && nodeId.includes('d')) {
         setSelectedLabel(selectedItem.label);
-        console.log(markdownText);
+        //console.log(markdownText);
         setMarkdownText(await getTutorial(nodeId));
-        console.log(markdownText);
+        //console.log(markdownText);
       }
     };
 
@@ -75,7 +75,7 @@ function Tutorial() {
     setSearchQuery(query);
     if (query) {
       const matchedNodes = searchTree(MUI_X_PRODUCTS, query);
-      console.log(matchedNodes);
+      //console.log(matchedNodes);
       if (matchedNodes) {
         setExpandedNodes(matchedNodes.map((node) => getAllParentIds(MUI_X_PRODUCTS, node.id)).flat());
         //setHighlightedNode(matchedNode.id);
