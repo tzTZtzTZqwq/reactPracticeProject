@@ -1,14 +1,35 @@
 import React from 'react';
-import { Paper, Button, Select, MenuItem, OutlinedInput, InputLabel, FormControl, SelectChangeEvent, Box, Chip, Typography } from '@mui/material';
+import { Paper, Button, Select, MenuItem, OutlinedInput, InputLabel, FormControl, SelectChangeEvent, Box, Chip, Typography, CircularProgress } from '@mui/material';
 import { DataGrid, GridSearchIcon } from '@mui/x-data-grid';
 import { getProblemList } from '@/apis/problem';
 import { useEffect, useState } from 'react';
 import { Link } from "react-router";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Search, WidthFull } from '@mui/icons-material';
-import { TextField } from '@mui/material';
-import { color } from '@uiw/react-codemirror';
-
+function CircularProgressWithLabel({ value, ...props }: { value: string, [key: string]: any }) {
+    const [numerator, denominator] = value.split('/').map(Number);
+    console.log(numerator)
+    const progress = value==""?0:((numerator / denominator) * 100>5?(numerator / denominator) * 100:5)
+    return (
+      <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+        <CircularProgress variant="determinate" value={progress} sx={{marginTop:'auto',marginBottom:'auto',color:progress==100?'green':(progress>20?'orange':'red'),display:progress==0?'none':''}} size={30}  />
+        <Box
+          sx={{
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            position: 'absolute',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+        <p>{value}</p>
+        </Box>
+      </Box>
+    );
+}
+  
 function ProblemList() {
     const [problems, setProblems] = useState([]);
     const [filteredProblems, setFilteredProblems] = useState([]);
@@ -45,15 +66,21 @@ function ProblemList() {
     const columns = [
         { field: 'problem_index', headerName: 'ID', width: 100 },
         { field: 'title', headerName: 'NAME', flex: 1,
-            renderCell: (params) => (
-                <Link to={'/attempt/' + params.row.problem_index} style={{ 
-                    textDecoration: 'none',
-                    color: 'black',
-                    
+            renderCell: (params) => {
+                console.log(params)
+                return(
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <Link to={'/attempt/' + params.row.problem_index} style={{ 
+                        textDecoration: 'none',
+                        color: 'black',
                     }}>
-                    {params.value}
-                </Link>
-            )
+                        {params.row.id}
+                    </Link>
+                    <CircularProgressWithLabel value={params.row.result} />
+
+                </div>
+                )
+            }
         },
         { field: 'tags', headerName: 'TAGS', flex: 1,
             renderCell: (params) => {
@@ -122,7 +149,7 @@ function ProblemList() {
     };
 
     return (
-        <div className="problems-problemList-root" style={{ height: 400, padding: '15px',minHeight:'800px' }}>
+        <div className="problems-problemList-root" style={{ height: 400, padding: '10px',minHeight:'800px' }}>
             <Paper sx={{ width: '100%', height: '70px', marginBottom: '10px', alignItems: 'center', display: 'flex' }}>
                 <FormControl sx={{ m: 1, width: 300 }}>
                     <InputLabel id="demo-multiple-name-label">难度 - Difficulties</InputLabel>

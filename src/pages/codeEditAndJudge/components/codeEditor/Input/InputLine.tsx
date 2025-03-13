@@ -28,7 +28,7 @@ function InputLine({index, handleFunctionChange, handleDeleteRow, handleParamsCh
             />
             </TableCell>
             <TableCell sx={{width:'50px',padding:'2px'}}>
-            <IconButton onClick={() => handleDeleteRow(index)}>
+            <IconButton onClick={() => handleDeleteRow(index)} sx={{marginLeft:'auto'}}>
                 <DeleteIcon />
             </IconButton>
             </TableCell>

@@ -49,7 +49,7 @@ function CodeInput() {
   }, [codeSnap.inputFormResultArray]);
 
   return (
-    <div className="codeEditor-Input-root" style={{ backgroundColor: 'white', overflow: 'scroll', padding: '5px' }}>
+    <div className="codeEditor-Input-root" style={{ backgroundColor: 'white', overflow: 'scroll' }}>
       <div style={{ fontSize: '15px', marginTop: '10px' }}>
         <span>可用函数:  </span>
         {codeSnap.inputForm.form.map((item, index) => (
@@ -60,13 +60,13 @@ function CodeInput() {
         <TableBody>
           <TableRow key={-1} sx={{ height: '30px' }}>
             <TableCell sx={{ width: '40%', padding: '2px' }}>
-              调用函数
+              调用函数 Functions called
             </TableCell>
             <TableCell sx={{ width: 'auto', padding: '2px' }}>
-              参数
+              参数 parameters
             </TableCell>
-            <TableCell sx={{ width: '50px', padding: '2px' }}>
-              删除
+            <TableCell sx={{ width: '80px', padding: '2px' }}>
+              删除 delete
             </TableCell>
           </TableRow>
           {rows.map((row, index) => {

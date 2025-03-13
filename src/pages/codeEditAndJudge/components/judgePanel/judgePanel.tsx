@@ -13,7 +13,7 @@ function JudgeStatsPanel({ blockStatusArray ,result}: JudgeStatsPanelProps) {
   const codeSnap = useSnapshot(store);
   console.log(blockStatusArray[0]);
   return (
-    <div className="judgePanel-root" style={{boxShadow: codeSnap.ifHoveringSubmitButton ? '0 0 10px #bbbbbb' : 'none', zIndex: codeSnap.ifHoveringSubmitButton ? 1 : 'auto'}}>
+    <div className="judgePanel-root" >
       <Paper sx={{maxHeight:'25vh',overflow:'scroll'}}>
       <p>{result}</p>
       <Divider/>
@@ -29,13 +29,13 @@ function JudgeStatsPanel({ blockStatusArray ,result}: JudgeStatsPanelProps) {
           <div key={groupIndex}>
             <p style={{marginTop:'5px',marginBottom:'5px'}}>{group.resultGroup}</p>
             <Divider/>
-            <Grid2 container spacing={6}>
+            <div style={{display:'flex'}}>
             {group.blocks.map((block, blockIndex) => (
-            <Grid2 key={blockIndex} size={1}>
+            <div>
               <JudgeStatsBlock block={block} />
-            </Grid2>
+            </div>
           ))}
-            </Grid2>
+            </div>
           </div>
         ))}
       </Paper>

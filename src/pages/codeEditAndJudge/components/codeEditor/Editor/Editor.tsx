@@ -52,7 +52,7 @@ function CodeEditorInner() {
         value={typeof codeSnap.code === 'string' ? codeSnap.code : 'error 03 expected string but got: '+typeof codeSnap.code} 
         height="100%" 
         width="100%"
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: '100%', width: '100%',fontSize:'10px' }}
         basicSetup={{
           tabSize: 4,
           autocompletion: true,
@@ -61,6 +61,7 @@ function CodeEditorInner() {
           lineNumbers: true,
           foldGutter: true,
           indentOnInput: true,
+    
         }}
         extensions={[
           java(),

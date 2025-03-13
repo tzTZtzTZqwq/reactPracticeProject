@@ -1,7 +1,7 @@
 import { ListItem, Paper, Button } from "@mui/material"
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from "react-router";
-function ProblemItem({id,name,tags}){
+function ProblemItem({id,name,tags,progress}){
     return(
         <div className="problems-problemItem-root">
             <ListItem>

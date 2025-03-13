@@ -10,6 +10,7 @@ import Account from './pages/account/account';
 import Tasks from './pages/tasks/tasks';
 import ManageMent from './pages/management/management';
 import Tutorial from './pages/tutorial/tutorial';
+import FrontPage from './pages/frontpage/frontpage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,6 +27,7 @@ root.render(
       <Route path="/account" element={<Account />} />
       <Route path="/management" element={<ManageMent />} />
       <Route path="/tutorial" element={<Tutorial />} />
+      <Route path="/frontpage" element={<FrontPage />} />
     </Routes>
     </BrowserRouter>
 );

@@ -31,7 +31,7 @@ function Description(){
 function ProblemDetail() {
   const codeSnap = useSnapshot(store)
   return (
-    <Paper sx={{padding:'10px',overflow:'scroll',height:'100%',margin:'15px',marginRight:'0px'}}>
+    <Paper sx={{padding:'10px',overflow:'scroll',height:'100%',margin:'10px',marginRight:'0px'}}>
       <Typography variant='h5'>
         {codeSnap.problemName}
       </Typography>

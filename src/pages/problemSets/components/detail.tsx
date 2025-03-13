@@ -7,16 +7,12 @@ function Detail(){
         <div className="problemSet-detail-root">
             <Grid2 container spacing={2}>
                 
-                <SetBar/>
-                <SetItem/>
-                <SetItem/>
-                <SetBar/>
-                <SetItem/>
-                <SetItem/>
-                <SetItem/>
-                <SetItem/>
-                <SetItem/>
-                
+                <SetBar title="section 1"/>
+                <SetItem title="set 1" text="p1"/>
+                <SetItem title="set 2" text="p2"/>
+                <SetBar title="section 2"/>
+                <SetItem title="set 1" text="p3"/>
+               
 
             </Grid2>
         </div>

@@ -32,7 +32,7 @@ function CodeEditAndJudge() {
         </div>
           
         
-        <div style={{ width: '70%' }}>
+        <div style={{ width: '70%' ,height:'84vh'}}>
           <CodeEditor />
         </div>
       </div>

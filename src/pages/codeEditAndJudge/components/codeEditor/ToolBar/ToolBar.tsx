@@ -58,11 +58,6 @@ function CodeToolBar() {
                 LOG
                 
             </Button>
-            <Paper sx={{display:'flex',paddingLeft:'10px',paddingRight:'10px',height:'30px'}}>
-            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>设置输入</p>
-            <Switch onChange={()=>{store.ifUsingInput = !codeSnap.ifUsingInput}} sx={{ transform: 'scale(0.8)',alignSelf:'center'}}/>
-            <p style={{margin:'0',marginTop:'auto',marginBottom:'auto'}}>查看输出</p>
-            </Paper>
         </div>
     );
 }

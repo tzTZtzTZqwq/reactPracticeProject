@@ -13,8 +13,8 @@ function Outline(){
                         </Typography>
                         <Divider sx={{marginLeft:'10px',marginRight:'10px'}}/>
                         <Stack direction="row" spacing={2} sx={{padding:'10px',height:'180px',overflow:'scroll'}}>
-                            <ProblemCard id="P3" title="单调数列" description="i think it's eazy"></ProblemCard>
-                            <ProblemCard id="P5" title="DiverseArray" description="AP2015真题"></ProblemCard>
+                            <ProblemCard id="3" title="单调数列" description="Monotonic Array"></ProblemCard>
+                            <ProblemCard id="5" title="DiverseArray" description="AP2015Q1"></ProblemCard>
                         </Stack>
                     </Paper>
                 </Grid2>

@@ -21,20 +21,18 @@ function Tutorial() {
   const MUI_X_PRODUCTS: TreeViewBaseItem[] = [
     {
       id: 'u0',
-      label: '0 - Introduction',
+      label: '0 - Part1',
       children: [
-      { id: 'd0-1', label: '0.1 Introduction' },
-      { id: 'd0-2', label: '0.2 About a Java program(无内容)' },
+      { id: 'd0-1', label: 'File0-1' },
+      { id: 'd0-2', label: 'File0-2' },
       ],
     },
     {
       id: 'u1',
-      label: '1 - Primitive Data Types and Arithmetic Expressions',
+      label: '1 - Part2',
       children: [
-      { id: 'd1-1', label: '1.1 Declaring and changing variables in Java' },
-      { id: 'd1-2', label: '1.2 Primitive Data Types in Java' },
-      { id: 'd1-3', label: '1.3 Arithmetic Operators and Expressions(无内容)' },
-      { id: 'd1-4', label: '1.4 Data Conversion(无内容)' },
+      { id: 'd1-1', label: 'File1-1' },
+      { id: 'd1-2', label: 'File1-2' },
       ],
     },
     ];

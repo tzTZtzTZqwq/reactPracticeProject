@@ -74,13 +74,13 @@ export const store = proxy<{
   problemDescription: string;
   defaultCode:string;//进入题目的时候显示的默认代码
   result:string//判题结果
-  ifUsingInput:boolean,//是否正在显示输入
   blockResultArray: Array<any>,//判题结果方块
   inputForm:any//输入表单格式
   inputFormResultArray:Array<any>,//输入表单结果
   ifHoveringRunButton: boolean,//鼠标悬浮于执行按钮
   ifHoveringSubmitButton: boolean,//鼠标悬浮于提交按钮
-}>({
+  tabIndex:number//目前CodeToolbar选择的tab
+  }>({
   code: localStorage.getItem('code') || defaultCode,
   input: '',
   output: '',
@@ -89,14 +89,13 @@ export const store = proxy<{
   problemName: '',
   problemDescription: '',
   result: '',
-  ifUsingInput: false,
   blockResultArray: [],
   //inputForm: [],
-  inputForm: {form:[{name:"void recordPlay(int score)",func:'recordPlay'},{name:'String getScore()',func:'getScore'},{name:'Scoreboard(String team1, String team2)',func:'Scoreboard'}],
-              default:[{func:'Scoreboard',param:'Red,Blue'},{func:'recordPlay',param:'0'},{func:'getScore',param:''}]},
+  inputForm: {form:[],default:[]},
   inputFormResultArray: [],
   ifHoveringRunButton: false,
   ifHoveringSubmitButton: false,
+  tabIndex : 0
 })
 
 async function initializeData(problemIndex:string){
@@ -106,37 +105,39 @@ async function initializeData(problemIndex:string){
     store.defaultCode = problemDetail['default_code'];
     store.problemName = problemDetail['title'];
     store.code = store.defaultCode;
-    //store.inputForm = JSON.parse(problemDetail['input_form'])['form'];
+    store.inputForm = JSON.parse(problemDetail['input_form']);
     store.inputFormResultArray = store.inputForm.default.map(item => {
       const formItem = store.inputForm.form.find(f => f.func === item.func);
       return { ...item, name: formItem ? formItem.name : '' };
     });
-    console.log(store.inputFormResultArray);
-    var attemptResult = await fetchResult();
+    var attemptResult = await fetchResult(problemIndex);
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
 }
 
 async function runCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
+    store.tabIndex = 0;
     const inputData = [
       store.inputFormResultArray.length,
       ...store.inputFormResultArray.map(item => item.func),
       ...store.inputFormResultArray.map(item => item.param)
-    ].join('\n');
+    ].join('\n')+'\n';
     
     store.output = await runCode(store.code, inputData, store.problemIndex);
 }
 
 async function submitCodeS(){
     store.output = 'Your code has been submitted at '+new Date().toLocaleTimeString()+'. Please wait.';
+    store.tabIndex = 0;
     const result = await submitCode(store.code, store.input, store.problemIndex);
     console.log(result);
     store.output = /^[0-9]$/.test(result) ? '按refresh刷新状态' : result;
 }
 
 async function refreshS() {
-    var attemptResult = await fetchResult();
+    store.tabIndex = 2;
+    var attemptResult = await fetchResult(store.problemIndex);
     store.result = attemptResult['result']
     store.blockResultArray = attemptResult['blockStatusArray']
 }

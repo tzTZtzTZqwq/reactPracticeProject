@@ -4,7 +4,9 @@ import { apiRoot } from "./apiDefines";
 
 const getProblemList = async () => {
   try {
-    const response = await fetch(apiRoot+'/problems/getProblemList');
+    const response = await fetch(apiRoot+'/problems/getProblemList',{
+      credentials: 'include'
+    });
     const data = await response.json();
     return data;
   } catch (error) {
@@ -22,7 +24,8 @@ const submitCode = async (code: string,input: string,problem_index: string) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ code, input,problem_index })
+      body: JSON.stringify({ code, input,problem_index }),
+      credentials: 'include' 
     });
     const data = await response.json();
     if (typeof data.output === 'string') {
@@ -45,7 +48,8 @@ const runCode = async (code: string,input: string,problem_index:string = "") => 
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ code, input,problem_index })
+      body: JSON.stringify({ code, input,problem_index }),
+      credentials: 'include' 
     });
     const data = await response.json();
     if (typeof data.output === 'string') {
@@ -62,7 +66,7 @@ const runCode = async (code: string,input: string,problem_index:string = "") => 
 };
 
 //returns
-//  description:string the description of the problem ~200 words
+//  description:string
 const fetchProblemDetail = async (problem_index) => {
   try {
     const response = await fetch(apiRoot+'/records/getProblem', {
@@ -70,7 +74,8 @@ const fetchProblemDetail = async (problem_index) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({problem_index})
+      body: JSON.stringify({problem_index}),
+      credentials: 'include' 
     });
     const data = await response.json();
     return data;
@@ -85,12 +90,14 @@ const fetchProblemDetail = async (problem_index) => {
 //returns
 //  result:string the description of result ~40 words
 //  blockStatusArray:Array an array of blocks
-const fetchResult = async () => {
+const fetchResult = async (problem_index) => {
   var result = '';
   var blockStatusArray = [];
   try {
     const response = await fetch(apiRoot+'/records/getJudgeResult', {
-      method: 'GET',
+      method: 'POST',
+      body: JSON.stringify({problem_index}),
+      credentials: 'include' 
     });
     const data = await response.json();
     
@@ -102,7 +109,7 @@ const fetchResult = async () => {
     if(data.result_description==""){
       result = "你还没有提交过代码"
     }else{
-      result = "上次提交时间:"+data.time+",上次提交结果:通过了"+data.result_description + "个测试用例";
+      result = "Submitted at:"+data.time+"\n"+data.result_description + "testcases passed";
     }
     
     if(data.result!=''){
